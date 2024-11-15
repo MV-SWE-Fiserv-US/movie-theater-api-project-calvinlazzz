@@ -30,7 +30,7 @@ userRouter.get('/:id/shows', async (req, res) => {
             include: Show
         });
         if (user) {
-            res.json(user.Shows);
+            res.json(user);
         } else {
             res.status(404).send('User not found');
         }
