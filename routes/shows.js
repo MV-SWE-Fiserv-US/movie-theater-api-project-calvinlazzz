@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
-const { User, Show } = require('../models'); 
+const showRouter = express.Router();
+const{ User, Show } = require('../models/index'); 
 
 
-router.get('/shows', async (req, res) => {
+showRouter.get('/', async (req, res) => {
     try {
         const shows = await Show.findAll();
         res.json(shows);
@@ -12,7 +12,7 @@ router.get('/shows', async (req, res) => {
     }
 });
 
-router.get('/shows/:id', async (req, res) => {
+showRouter.get('/:id', async (req, res) => {
     try {
         const show = await Show.findByPk(req.params.id);
         if (show) {
@@ -25,7 +25,7 @@ router.get('/shows/:id', async (req, res) => {
     }
 });
 
-router.get('/shows/:id/users', async (req, res) => {
+showRouter.get('/:id/users', async (req, res) => {
     try {
         const show = await Show.findByPk(req.params.id, {
             include: User
@@ -40,7 +40,7 @@ router.get('/shows/:id/users', async (req, res) => {
     }
 });
 
-router.put('/shows/:id', async (req, res) => {
+showRouter.put('/:id', async (req, res) => {
     try {
         const show = await Show.findByPk(req.params.id);
         if (show) {
@@ -55,7 +55,7 @@ router.put('/shows/:id', async (req, res) => {
     }
 });
 
-router.delete('/shows/:id', async (req, res) => {
+showRouter.delete('/:id', async (req, res) => {
     try {
         const show = await Show.findByPk(req.params.id);
         if (show) {
@@ -69,7 +69,7 @@ router.delete('/shows/:id', async (req, res) => {
     }
 });
 
-router.get('/shows', async (req, res) => {
+showRouter.get('/', async (req, res) => {
     try {
         const genre = req.query.genre;
         let shows;
@@ -84,4 +84,4 @@ router.get('/shows', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = showRouter;

@@ -1,8 +1,8 @@
 const express = require('express');
-const router = express.Router();
-const { User, Show } = require('../models'); 
+const userRouter = express.Router();
+const { User, Show } = require('../models/index'); 
 
-router.get('/users', async (req, res) => {
+userRouter.get('/', async (req, res) => {
     try {
         const users = await User.findAll();
         res.json(users);
@@ -11,7 +11,7 @@ router.get('/users', async (req, res) => {
     }
 });
 
-router.get('/users/:id', async (req, res) => {
+userRouter.get('/:id', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
         if (user) {
@@ -24,7 +24,7 @@ router.get('/users/:id', async (req, res) => {
     }
 });
 
-router.get('/users/:id/shows', async (req, res) => {
+userRouter.get('/:id/shows', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id, {
             include: Show
@@ -39,7 +39,7 @@ router.get('/users/:id/shows', async (req, res) => {
     }
 });
 
-router.put('/users/:id/shows/:showId', async (req, res) => {
+userRouter.put('/:id/shows/:showId', async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
         const show = await Show.findByPk(req.params.showId);
@@ -54,4 +54,4 @@ router.put('/users/:id/shows/:showId', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = userRouter;

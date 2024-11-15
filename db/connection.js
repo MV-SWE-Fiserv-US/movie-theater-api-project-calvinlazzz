@@ -7,6 +7,5 @@ const db = new Sequelize('database', 'username', 'password', {
   storage: path.join(__dirname, 'db.sqlite'),
   logging: false
 })
-// test
 
 module.exports = { db, DataTypes, Model }
