@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize')
 const path = require('path')
+const express = require('express');
 
 const db = new Sequelize('database', 'username', 'password', {
   dialect: 'sqlite',
